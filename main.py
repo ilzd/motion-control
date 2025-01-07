@@ -21,8 +21,11 @@ groups: list[InputGroup] = []
 
 
 def load_config(file_path: str = None):
+    global zones
+
     try:
         save_data = save_manager.load(file_path)
+        zones = []
         for zone in save_data.zones:
             add_zone(zone)
     except Exception:
@@ -263,7 +266,6 @@ def can_activate(zone: InputZone):
 
     can_activate = True
     group = find_group(zone.group)
-    print(group)
     for z in group.zones:
         if z == zone:
             continue
